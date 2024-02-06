@@ -1,59 +1,16 @@
-"""
-Implement a first in first out (FIFO) queue using only two stacks. The implemented queue should support all the functions of a normal queue (push, peek, pop, and empty).
-"""
+# This is a sample Python script.
+
+# Press Shift+F10 to execute it or replace it with your code.
+# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 
 
-class MyQueue(object):
-
-    def __init__(self):
-        self.stk1 = []
-        self.stk2 = []
-
-    def push(self, x) -> None:
-        """
-        :type x: int
-        :rtype: None
-        """
-        self.stk1.append(x)
-
-    def pop(self):
-        """
-        :rtype: int
-        """
-        self.move()
-        return self.stk2.pop()
-
-    def peek(self) -> int:
-        """
-        :rtype: int
-        """
-        self.move()
-        return self.stk2[-1]
-
-    def empty(self):
-        """
-        :rtype: bool
-        """
-        return not self.stk1 and not self.stk2
-
-    def move(self):
-        if not self.stk2:
-            while self.stk1:
-                self.stk2.append(self.stk1.pop())
+def print_hi(name):
+    # Use a breakpoint in the code line below to debug your script.
+    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
 
 
+# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    obj = MyQueue()
-    obj.push(10)
-    param_2 = obj.pop()
-    param_3 = obj.peek()
-    param_4 = obj.empty()
+    print_hi('PyCharm')
 
-
-
-# Your MyQueue object will be instantiated and called as such:
-# obj = MyQueue()
-# obj.push(x)
-# param_2 = obj.pop()
-# param_3 = obj.peek()
-# param_4 = obj.empty()
+# See PyCharm help at https://www.jetbrains.com/help/pycharm/
