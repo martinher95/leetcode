@@ -4,7 +4,8 @@
 
 
 class Solution(object):
-    def lengthOfLongestSubstring(self, s):
+    # subarray approach
+    def lengthOfLongestSubstring0(self, s):
         """
         :type s: str
         :rtype: int
@@ -29,7 +30,26 @@ class Solution(object):
             length = 0
         return length
 
+    # window approach
+    def lengthOfLongestSubstring1(self, s):
+        length = len(s)
+        maxi = 0
+        if len(s) > 0:
+            for start in range(0, length):
+                end = start
+                sub = ""
+                while end < length:
+                    char = s[end]
+                    if char not in sub:
+                        sub = s[start:end+1]
+                        print(sub)
+                        end += 1
+                        maxi = max(maxi, len(sub))
+                    else:
+                        break
+        return maxi
+
 
 if __name__ == '__main__':
-    sol = Solution().lengthOfLongestSubstring("jbpnbwwd")
+    sol = Solution().lengthOfLongestSubstring1("pwwkew")
     print(sol)

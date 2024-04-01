@@ -10,26 +10,30 @@ class Solution(object):
         :rtype: int
         """
         cons = []
-        costs = []
-        for i, p in enumerate(points):
+        total = 0
+        ip = 0
+        while ip < len(points) and ip not in cons and len(points) > 1:
+            p = points[ip]
             points2 = points.copy()
-            points2.remove(p)
-            min = 1000000
-            con = []
-            for j, p2 in enumerate(points2):
-                j2 = j if j < i else j + 1
-                curr = abs(p[0]-p2[0]) + abs(p[1]-p2[1])
-                if curr < min and sorted([i, j2]) not in cons:
+            points2.pop(ip)
+            min = 10000000
+            con = 0
+            for ip2, p2 in enumerate(points2):
+                ip2 = ip2 if ip2 < ip else ip2 + 1
+                curr = abs(p[0] - p2[0]) + abs(p[1] - p2[1])
+                if curr < min:
                     min = curr
-                    con = sorted([i, j2])
-
-            costs.append(min)
+                    con = ip2
+            cons.append(ip)
             cons.append(con)
-
-
-        return cons, costs
+            total += min
+            for j in range(len(points)):
+                if j not in set(cons):
+                    ip = j
+                    break
+        return total, cons
 
 
 if __name__ == '__main__':
-    sol = Solution().minCostConnectPoints([[0,0],[2,2],[3,10],[5,2],[7,0]])
+    sol = Solution().minCostConnectPoints([[2,-3],[-17,-8],[13,8],[-17,-15]])
     print(sol)
